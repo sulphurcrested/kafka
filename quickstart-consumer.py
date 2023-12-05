@@ -1,3 +1,5 @@
+## created by Samih Hijwel - 4 Dec 2023
+
 from kafka import KafkaConsumer
 import time, sys
 import argparse
