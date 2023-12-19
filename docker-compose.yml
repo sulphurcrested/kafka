@@ -64,4 +64,23 @@ services:
       KAFKA_SERVER: kafka
       KAFKA_PORT: 19092
       KAFKA_TOPIC: quickstart-events
+
+  looper:
+    image: kafka_looper
+    container_name: kafka_looper
+    depends_on: 
+      - kafka
+    networks: 
+      - kafka_net
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        APP: looper.py
+    environment:
+      - APP=looper.py
+      - KAFKA_SERVER=kafka
+      - KAFKA_PORT=19092
+      - KAFKA_TOPIC_LISTEN=looper-listen
+      - KAFKA_TOPIC_ECHO=looper-echo
         
